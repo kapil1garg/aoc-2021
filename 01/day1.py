@@ -2,6 +2,8 @@
 This module provides a solution for Advent of Code, Day 1: Sonar Sweep.
 For more information, see: https://adventofcode.com/2021/day/1
 """
+
+
 def get_nums_from_input_file(file_name):
     """Reads in data from an input file, and converts strings to a list of numbers.
 

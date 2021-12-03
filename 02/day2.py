@@ -1,7 +1,9 @@
 """
-This module provides a solution for Advent of Code, Day 1: Sonar Sweep.
+This module provides a solution for Advent of Code, Day 2: Dive!.
 For more information, see: https://adventofcode.com/2021/day/2
 """
+
+
 def get_sub_commands_from_input_file(file_name):
     """Reads in data from an input file, and converts strings to a list of numbers.
 
@@ -19,6 +21,7 @@ def get_sub_commands_from_input_file(file_name):
     # parse strings into tuples of direction and value
     return [(curr_val.split()[0].strip().decode('UTF-8'), int(curr_val.split()[1].strip()))
     for curr_val in lines]
+
 
 def determine_position_pt1(input_file):
     """Determines final position of submarine for Part 1 after executing commands from input_file.
@@ -78,6 +81,7 @@ def determine_position_pt2(input_file):
 
     # return final position
     return horizontal * depth
+
 
 print(f"Part 1: {determine_position_pt1('input.txt')}")
 print(f"Part 2: {determine_position_pt2('input.txt')}")
