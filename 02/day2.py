@@ -2,28 +2,28 @@
 This module provides a solution for Advent of Code, Day 2: Dive!.
 For more information, see: https://adventofcode.com/2021/day/2
 """
+import sys
+import os
+
+sys.path.append("..")
+import utils.read_input as read_input
 
 
-def get_sub_commands_from_input_file(file_name):
-    """Reads in data from an input file, and converts strings to a list of numbers.
+def parse_input(input_lines):
+    """Parses list of strings from input file into list of tuples of direction and value.
 
     Args:
-        file_name ([string]): filename to read in.
+        input_lines ([string]): list of strings to prase.
 
     Returns:
-        [[integer]]: list of integers read in from file_name.
+        [(integer, integer)]: list of tuples of direction and value
     """
-    # fetch data as lines of text
-    lines = []
-    with open(file_name, "rb") as input_file:
-        lines = input_file.readlines()
-
     # parse strings into tuples of direction and value
-    return [(curr_val.split()[0].strip().decode('UTF-8'), int(curr_val.split()[1].strip()))
-    for curr_val in lines]
+    return [(curr_val.split()[0].strip(), int(curr_val.split()[1].strip()))
+    for curr_val in input_lines]
 
 
-def determine_position_pt1(input_file):
+def day2_pt1(input_file):
     """Determines final position of submarine for Part 1 after executing commands from input_file.
 
     Args:
@@ -32,8 +32,11 @@ def determine_position_pt1(input_file):
     Returns:
         [integer]: final horizontal position multipled by depth position.
     """
+    # get input from file
+    inputs = read_input.read_lines_from_file(input_file)
+
     # get all commands
-    sub_commands = get_sub_commands_from_input_file(input_file)
+    sub_commands = parse_input(inputs)
 
     # store current position values
     horizontal = 0
@@ -52,7 +55,7 @@ def determine_position_pt1(input_file):
     return horizontal * depth
 
 
-def determine_position_pt2(input_file):
+def day2_pt2(input_file):
     """Determines final position of submarine for Part 2 after executing commands from input_file.
 
     Args:
@@ -61,8 +64,11 @@ def determine_position_pt2(input_file):
     Returns:
         [type]: [description]
     """
+    # get input from file
+    inputs = read_input.read_lines_from_file(input_file)
+
     # get all commands
-    sub_commands = get_sub_commands_from_input_file(input_file)
+    sub_commands = parse_input(inputs)
 
     # store current position values
     aim = 0
@@ -83,5 +89,6 @@ def determine_position_pt2(input_file):
     return horizontal * depth
 
 
-print(f"Part 1: {determine_position_pt1('input.txt')}")
-print(f"Part 2: {determine_position_pt2('input.txt')}")
+input_filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'input.txt')
+print(f"Part 1: {day2_pt1(input_filepath)}")
+print(f"Part 2: {day2_pt2(input_filepath)}")

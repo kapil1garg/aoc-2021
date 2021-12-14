@@ -2,12 +2,23 @@
 This module provides a solution for Advent of Code, Day 4: Giant Squid.
 For more information, see: https://adventofcode.com/2021/day/4
 """
+import sys
+import os
 from functools import reduce
+
+sys.path.append("..")
+import utils.read_input as read_input
+
 
 class BingoBoard:
     """Board object for playing bingo.
     """
     def __init__(self, input_lines):
+        """Constructor
+
+        Args:
+            input_lines ([strings]): list of strings (of numbers) to create the bingo board with.
+        """
         self.board = self.create_board_from_input(input_lines)
 
 
@@ -69,22 +80,6 @@ class BingoBoard:
         return reduce(lambda x, y: x + y, set_diff)
 
 
-def get_file_input(file_name):
-    """Reads in data from an input file as list of strings.
-
-    Args:
-        file_name (string): filename to read in.
-
-    Returns:
-        [string]: list from strings from file_name.
-    """
-    # fetch data as lines of text
-    lines = []
-    with open(file_name, "r", encoding="utf-8") as input_file:
-        lines = input_file.readlines()
-
-    return lines
-
 def parse_inputs(input_list):
     """Parses inputs into list of drawn numbers and list of BingoBoard objects.
 
@@ -132,7 +127,7 @@ def day4_pt1(input_file):
             multiplied by last drawn number.
     """
     # get input from file
-    inputs = get_file_input(input_file)
+    inputs = read_input.read_lines_from_file(input_file)
 
     # parse inputs
     drawn_numbers, bingo_boards = parse_inputs(inputs)
@@ -164,7 +159,7 @@ def day4_pt2(input_file):
             multiplied by last drawn number for the last board to win.
     """
     # get input from file
-    inputs = get_file_input(input_file)
+    inputs = read_input.read_lines_from_file(input_file)
 
     # parse inputs
     drawn_numbers, bingo_boards = parse_inputs(inputs)
@@ -194,5 +189,6 @@ def day4_pt2(input_file):
     return last_called_num * last_board_score
 
 
-print(f"Part 1: {day4_pt1('input.txt')}")
-print(f"Part 2: {day4_pt2('input.txt')}")
+input_filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'input.txt')
+print(f"Part 1: {day4_pt1(input_filepath)}")
+print(f"Part 2: {day4_pt2(input_filepath)}")

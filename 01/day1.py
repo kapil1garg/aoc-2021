@@ -2,24 +2,24 @@
 This module provides a solution for Advent of Code, Day 1: Sonar Sweep.
 For more information, see: https://adventofcode.com/2021/day/1
 """
+import sys
+import os
+
+sys.path.append("..")
+import utils.read_input as read_input
 
 
-def get_nums_from_input_file(file_name):
-    """Reads in data from an input file, and converts strings to a list of numbers.
+def parse_inputs(input_list):
+    """Parses list of strings from input file into list of integers.
 
     Args:
-        file_name ([string]): filename to read in.
+        input_list ([string]): inputs read in from file as list of strings.
 
     Returns:
-        [[integer]]: list of integers read in from file_name.
+        [[integer]]: list of integers parsed from input strings.
     """
-    # fetch data as lines of text
-    lines = []
-    with open(file_name, "rb") as input_file:
-        lines = input_file.readlines()
-
     # parse strings into integers and return
-    return [int(curr_val.strip()) for curr_val in lines]
+    return [int(curr_val.strip()) for curr_val in input_list]
 
 
 def get_adj_increasing_count(num_list):
@@ -51,7 +51,7 @@ def get_adj_increasing_count(num_list):
     return increasing_count
 
 
-def get_num_increasing_rows(input_file):
+def day1_pt1(input_file):
     """Gets the number of rows where the value is increasing, given an input file of integers.
 
     Args:
@@ -60,11 +60,17 @@ def get_num_increasing_rows(input_file):
     Returns:
         [integer]: number of times a subsequent row increases in value.
     """
-    numbers = get_nums_from_input_file(input_file)
+    # get input from file
+    inputs = read_input.read_lines_from_file(input_file)
+
+    # parse inputs
+    numbers = parse_inputs(inputs)
+
+    # compute increasing count and return
     return get_adj_increasing_count(numbers)
 
 
-def get_num_increasing_for_window(input_file, window_size):
+def day2_pt2(input_file, window_size):
     """Gets the number of times a running window is increasing.
 
     Args:
@@ -74,8 +80,11 @@ def get_num_increasing_for_window(input_file, window_size):
     Returns:
         [integer]: number of times a subsequent row increases in value.
     """
-    # get numbers from the input file
-    numbers = get_nums_from_input_file(input_file)
+    # get input from file
+    inputs = read_input.read_lines_from_file(input_file)
+
+    # parse inputs
+    numbers = parse_inputs(inputs)
 
     # create a list of rolling windows of window_size with all values in the window summed
     # from: https://stackoverflow.com/a/12709934
@@ -90,5 +99,6 @@ def get_num_increasing_for_window(input_file, window_size):
     return get_adj_increasing_count(windows)
 
 
-print(get_num_increasing_rows('input.txt'))
-print(get_num_increasing_for_window('input.txt', 3))
+input_filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'input.txt')
+print(day1_pt1(input_filepath))
+print(day2_pt2(input_filepath, 3))

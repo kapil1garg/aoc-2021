@@ -2,23 +2,23 @@
 This module provides a solution for Advent of Code, Day 3: Binary Diagnostic.
 For more information, see: https://adventofcode.com/2021/day/3
 """
+import sys
+import os
 
-def get_binary_lines_from_input_file(file_name):
-    """Reads in data from an input file, and converts strings to a list of numbers.
+sys.path.append("..")
+import utils.read_input as read_input
+
+def parse_input(input_lines):
+    """Parses list of strings from input file into strings of binary numbers.
 
     Args:
-        file_name ([string]): filename to read in.
+        input_lines ([string]): list of strings to prase.
 
     Returns:
-        [[integer]]: list of integers read in from file_name.
+        [string]: list of binary numbers as strings.
     """
-    # fetch data as lines of text
-    lines = []
-    with open(file_name, "r", encoding="utf-8") as input_file:
-        lines = input_file.readlines()
-
-    # parse strings into tuples of direction and value
-    return [x.strip() for x in lines]
+    # parse input into strings of binary numbers
+    return [x.strip() for x in input_lines]
 
 
 def day3_pt1(input_file):
@@ -30,8 +30,11 @@ def day3_pt1(input_file):
     Returns:
         [integer]: final horizontal position multipled by depth position.
     """
-    # get all commands
-    power_consumption_bin = get_binary_lines_from_input_file(input_file)
+    # get input from file
+    inputs = read_input.read_lines_from_file(input_file)
+
+    # parse input
+    power_consumption_bin = parse_input(inputs)
 
     # get most common bit
     most_common_bits = []
@@ -69,12 +72,15 @@ def day3_pt2(input_file):
     Returns:
         [integer]: final horizontal position multipled by depth position.
     """
-    # get all commands
-    power_consumption_bin = get_binary_lines_from_input_file(input_file)
+    # get input from file
+    inputs = read_input.read_lines_from_file(input_file)
+
+    # parse input
+    power_consumption_bin = parse_input(inputs)
 
     # get most common bit
     oxygen_rating = ""
-    curr_list = [x for x in power_consumption_bin]
+    curr_list = list(power_consumption_bin)
     for bit_index in range(0, len(power_consumption_bin[0])):
         num_zero = 0
         num_one = 0
@@ -140,5 +146,6 @@ def day3_pt2(input_file):
     return int(oxygen_rating, base=2) *  int(co2_rating, base=2)
 
 
-print(f"Part 1: {day3_pt1('input.txt')}")
-print(f"Part 2: {day3_pt2('input.txt')}")
+input_filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'input.txt')
+print(f"Part 1: {day3_pt1(input_filepath)}")
+print(f"Part 2: {day3_pt2(input_filepath)}")
