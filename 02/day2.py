@@ -88,7 +88,7 @@ def day2_pt2(input_file):
     # return final position
     return horizontal * depth
 
-
-input_filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'input.txt')
-print(f"Part 1: {day2_pt1(input_filepath)}")
-print(f"Part 2: {day2_pt2(input_filepath)}")
+if __name__ == "__main__":
+    input_filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'input.txt')
+    print(f"Part 1: {day2_pt1(input_filepath)}")
+    print(f"Part 2: {day2_pt2(input_filepath)}")

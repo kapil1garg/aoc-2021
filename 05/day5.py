@@ -135,6 +135,7 @@ def day5_pt2(input_file):
     return sum([item >= 2 for row in matrix for item in row])
 
 
-input_filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'input.txt')
-print(f"Part 1: {day5_pt1(input_filepath)}")
-print(f"Part 2: {day5_pt2(input_filepath)}")
+if __name__ == "__main__":
+    input_filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'input.txt')
+    print(f"Part 1: {day5_pt1(input_filepath)}")
+    print(f"Part 2: {day5_pt2(input_filepath)}")

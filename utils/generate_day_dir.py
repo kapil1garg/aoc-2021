@@ -79,9 +79,10 @@ def generate_file_template(puzzle_name, day_name, day_url):
         return None
 
 
-    input_filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'input.txt')
-    print(f"Part 1: {{{day_name}_pt1(input_filepath)}}")
-    print(f"Part 2: {{{day_name}_pt2(input_filepath)}}")
+    if __name__ == "__main__":
+        input_filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'input.txt')
+        print(f"Part 1: {{{day_name}_pt1(input_filepath)}}")
+        print(f"Part 2: {{{day_name}_pt2(input_filepath)}}")
     """
     # preprocessing before saving
     # remove leading space from each line

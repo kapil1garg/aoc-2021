@@ -98,7 +98,7 @@ def day2_pt2(input_file, window_size):
     # get the number of times the value is increasing
     return get_adj_increasing_count(windows)
 
-
-input_filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'input.txt')
-print(day1_pt1(input_filepath))
-print(day2_pt2(input_filepath, 3))
+if __name__ == "__main__":
+    input_filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'input.txt')
+    print(day1_pt1(input_filepath))
+    print(day2_pt2(input_filepath, 3))

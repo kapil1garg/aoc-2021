@@ -99,6 +99,7 @@ def day6_pt2(input_file):
     return simulate_fish_population(parsed_input, 256)
 
 
-input_filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'input.txt')
-print(f"Part 1: {day6_pt1(input_filepath)}")
-print(f"Part 2: {day6_pt2(input_filepath)}")
+if __name__ == "__main__":
+    input_filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'input.txt')
+    print(f"Part 1: {day6_pt1(input_filepath)}")
+    print(f"Part 2: {day6_pt2(input_filepath)}")

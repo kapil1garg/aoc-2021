@@ -189,6 +189,7 @@ def day4_pt2(input_file):
     return last_called_num * last_board_score
 
 
-input_filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'input.txt')
-print(f"Part 1: {day4_pt1(input_filepath)}")
-print(f"Part 2: {day4_pt2(input_filepath)}")
+if __name__ == "__main__":
+    input_filepath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'input.txt')
+    print(f"Part 1: {day4_pt1(input_filepath)}")
+    print(f"Part 2: {day4_pt2(input_filepath)}")
